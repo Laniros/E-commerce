@@ -1,10 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const morgan = require('morgan');
+const morgan = require('morgan'); // used for logging request details
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const expressValidator = require('express-validator');
-const cors = require('cors');
+const cors = require('cors'); // Connect/Express middleware
 //import routes
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');

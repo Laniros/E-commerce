@@ -1,8 +1,11 @@
-const { Order, CartItem } = require("../models/order");
+const { Order } = require("../models/order");
 const { errorHandler } = require("../helpers/dbErrorHandler");
+
+
 
 exports.orderById = (req, res, next, id) => {
     Order.findById(id)
+        //returns specific order with name of product and price
         .populate("products.product", "name price")
         .exec((err, order) => {
             if (err || !order) {
@@ -16,7 +19,6 @@ exports.orderById = (req, res, next, id) => {
 };
 
 exports.create = (req, res) => {
-    // console.log("CREATE ORDER: ", req.body);
     req.body.order.user = req.profile;
     const order = new Order(req.body.order);
     order.save((error, data) => {
@@ -43,6 +45,7 @@ exports.listOrders = (req, res) => {
         });
 };
 
+// get the status of orders (processed, shipped etc.)
 exports.getStatusValues = (req, res) => {
     res.json(Order.schema.path("status").enumValues);
 };

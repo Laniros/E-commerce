@@ -81,3 +81,54 @@ exports.purchaseHistory = (req, res) => {
             res.json(orders);
         });
 };
+
+//list all users for search
+
+// exports.list = (req, res) => {
+//     User.find().exec((err, data) => {
+//         if (err) {
+//             return res.status(400).json({
+//                 error: errorHandler(err)
+//             });
+//         }
+//         res.json(data);
+//     });
+// };
+//
+// exports.listBySearch = (req, res) => {
+//     let user = req.profile._id ? req.profile._id : "desc";
+//     let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
+//     let skip = parseInt(req.body.skip);
+//     let findArgs = {};
+//
+//     for (let key in req.body.filters) {
+//         if (req.body.filters[key].length > 0) {
+//             if (key === "price") {
+//                 // gte -  greater than price [0-10]
+//                 // lte - less than
+//                 findArgs[key] = {
+//                     $gte: req.body.filters[key][0],
+//                     $lte: req.body.filters[key][1]
+//                 };
+//             } else {
+//                 findArgs[key] = req.body.filters[key];
+//             }
+//         }
+//     }
+//
+//     User.find(findArgs)
+//         .populate()
+//         .sort([[sortBy, user]])
+//         .skip(skip)
+//         .exec((err, data) => {
+//             if (err) {
+//                 return res.status(400).json({
+//                     error: "Users not found"
+//                 });
+//             }
+//             res.json({
+//                 size: data.length,
+//                 data
+//             });
+//         });
+// };

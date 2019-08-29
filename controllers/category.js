@@ -1,6 +1,7 @@
 const Category = require("../models/category");
 const { errorHandler } = require("../helpers/dbErrorHandler");
 
+//returns category for search and create purposes
 exports.categoryById = (req, res, next, id) => {
     Category.findById(id).exec((err, category) => {
         if (err || !category) {
@@ -24,6 +25,7 @@ exports.create = (req, res) => {
         res.json({ data });
     });
 };
+
 
 exports.read = (req, res) => {
     return res.json(req.category);
@@ -56,6 +58,7 @@ exports.remove = (req, res) => {
     });
 };
 
+//list all
 exports.list = (req, res) => {
     Category.find().exec((err, data) => {
         if (err) {

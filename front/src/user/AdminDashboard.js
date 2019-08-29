@@ -2,10 +2,11 @@ import React from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
+// import SearchByUser from "../core/SearchByUser"
 
 const AdminDashboard = () => {
     const {
-        user: { _id, name, email, role }
+        user: { name, email, role }
     } = isAuthenticated();
 
     const adminLinks = () => {
@@ -26,6 +27,11 @@ const AdminDashboard = () => {
                     <li className="list-group-item">
                         <Link className="nav-link" to="/admin/orders">
                             View Orders
+                        </Link>
+                    </li>
+                    <li className="list-group-item">
+                        <Link className="nav-link" to="/admin/categories">
+                            Delete Category
                         </Link>
                     </li>
                     <li className="list-group-item">
@@ -59,6 +65,7 @@ const AdminDashboard = () => {
             description={`Hello ${name}!`}
             className="container-fluid"
         >
+            {/*<SearchByUser/>*/}
             <div className="row">
                 <div className="col-3">{adminLinks()}</div>
                 <div className="col-9">{adminInfo()}</div>

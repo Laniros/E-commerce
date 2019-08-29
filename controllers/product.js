@@ -4,6 +4,7 @@ const fs = require("fs");
 const Product = require("../models/product");
 const { errorHandler } = require("../helpers/dbErrorHandler");
 
+
 exports.productById = (req, res, next, id) => {
     Product.findById(id)
         .populate("category")
@@ -164,6 +165,7 @@ exports.list = (req, res) => {
 /**
  * it will find the products based on the req product category
  * other products that has the same category, will be returned
+ * for the "related products option"
  */
 
 exports.listRelated = (req, res) => {
@@ -195,10 +197,6 @@ exports.listCategories = (req, res) => {
 
 /**
  * list products by search
- * we will implement product search in react frontend
- * we will show categories in checkbox and price range in radio buttons
- * as the user clicks on those checkbox and radio buttons
- * we will make api request and show the products to users based on what he wants
  */
 
 exports.listBySearch = (req, res) => {
@@ -207,9 +205,6 @@ exports.listBySearch = (req, res) => {
     let limit = req.body.limit ? parseInt(req.body.limit) : 100;
     let skip = parseInt(req.body.skip);
     let findArgs = {};
-
-    // console.log(order, sortBy, limit, skip, req.body.filters);
-    // console.log("findArgs", findArgs);
 
     for (let key in req.body.filters) {
         if (req.body.filters[key].length > 0) {
@@ -259,8 +254,8 @@ exports.listSearch = (req, res) => {
     // assign search value to query.name
     if (req.query.search) {
         query.name = { $regex: req.query.search, $options: "i" };
-        // assigne category value to query.category
-        if (req.query.category && req.query.category != "All") {
+        // assign category value to query.category
+        if (req.query.category && req.query.category !== "All") {
             query.category = req.query.category;
         }
         // find the product based on query object with 2 properties
@@ -276,6 +271,7 @@ exports.listSearch = (req, res) => {
     }
 };
 
+//change quantity based on sold and stock
 exports.decreaseQuantity = (req, res, next) => {
     let bulkOps = req.body.order.products.map(item => {
         return {
@@ -286,6 +282,7 @@ exports.decreaseQuantity = (req, res, next) => {
         };
     });
 
+    //update in the DB
     Product.bulkWrite(bulkOps, {}, (error, products) => {
         if (error) {
             return res.status(400).json({

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import Layout from "../core/Layout";
-import { isAuthenticated } from "../auth";
-import { Link, Redirect } from "react-router-dom";
-import { getProduct, getCategories, updateProduct } from "./apiAdmin";
+import {isAuthenticated} from "../auth";
+import {Redirect} from "react-router-dom";
+import {getProduct, getCategories, updateProduct} from "./apiAdmin";
 
-const UpdateProduct = ({ match }) => {
+const UpdateProduct = ({match}) => {
     const [values, setValues] = useState({
         name: "",
         description: "",
@@ -21,14 +21,12 @@ const UpdateProduct = ({ match }) => {
         formData: ""
     });
 
-    const { user, token } = isAuthenticated();
+    const {user, token} = isAuthenticated();
     const {
         name,
         description,
         price,
         categories,
-        category,
-        shipping,
         quantity,
         loading,
         error,
@@ -40,7 +38,7 @@ const UpdateProduct = ({ match }) => {
     const init = productId => {
         getProduct(productId).then(data => {
             if (data.error) {
-                setValues({ ...values, error: data.error });
+                setValues({...values, error: data.error});
             } else {
                 // populate the state
                 setValues({
@@ -63,7 +61,7 @@ const UpdateProduct = ({ match }) => {
     const initCategories = () => {
         getCategories().then(data => {
             if (data.error) {
-                setValues({ ...values, error: data.error });
+                setValues({...values, error: data.error});
             } else {
                 setValues({
                     categories: data,
@@ -81,17 +79,17 @@ const UpdateProduct = ({ match }) => {
         const value =
             name === "photo" ? event.target.files[0] : event.target.value;
         formData.set(name, value);
-        setValues({ ...values, [name]: value });
+        setValues({...values, [name]: value});
     };
 
     const clickSubmit = event => {
         event.preventDefault();
-        setValues({ ...values, error: "", loading: true });
+        setValues({...values, error: "", loading: true});
 
         updateProduct(match.params.productId, user._id, token, formData).then(
             data => {
                 if (data.error) {
-                    setValues({ ...values, error: data.error });
+                    setValues({...values, error: data.error});
                 } else {
                     setValues({
                         ...values,
@@ -161,11 +159,11 @@ const UpdateProduct = ({ match }) => {
                 >
                     <option>Please select</option>
                     {categories &&
-                        categories.map((c, i) => (
-                            <option key={i} value={c._id}>
-                                {c.name}
-                            </option>
-                        ))}
+                    categories.map((c, i) => (
+                        <option key={i} value={c._id}>
+                            {c.name}
+                        </option>
+                    ))}
                 </select>
             </div>
 
@@ -198,7 +196,7 @@ const UpdateProduct = ({ match }) => {
     const showError = () => (
         <div
             className="alert alert-danger"
-            style={{ display: error ? "" : "none" }}
+            style={{display: error ? "" : "none"}}
         >
             {error}
         </div>
@@ -207,7 +205,7 @@ const UpdateProduct = ({ match }) => {
     const showSuccess = () => (
         <div
             className="alert alert-info"
-            style={{ display: createdProduct ? "" : "none" }}
+            style={{display: createdProduct ? "" : "none"}}
         >
             <h2>{`${createdProduct}`} is updated!</h2>
         </div>
@@ -223,7 +221,7 @@ const UpdateProduct = ({ match }) => {
     const redirectUser = () => {
         if (redirectToProfile) {
             if (!error) {
-                return <Redirect to="/" />;
+                return <Redirect to="/"/>;
             }
         }
     };
@@ -231,7 +229,7 @@ const UpdateProduct = ({ match }) => {
     return (
         <Layout
             title="Add a new product"
-            description={`G'day ${user.name}, ready to add a new product?`}
+            description={`Hello ${user.name}, want to update your products?`}
         >
             <div className="row">
                 <div className="col-md-8 offset-md-2">

@@ -39,7 +39,7 @@ const Orders = () => {
     const showOrdersLength = () => {
         if (orders.length > 0) {
             return (
-                <h1 className="text-danger display-2">
+                <h1 className="text-danger display-5">
                     Total orders: {orders.length}
                 </h1>
             );
@@ -94,7 +94,7 @@ const Orders = () => {
     return (
         <Layout
             title="Orders"
-            description={`G'day ${
+            description={`Hey ${
                 user.name
             }, you can manage all the orders here`}
             className="container-fluid"
