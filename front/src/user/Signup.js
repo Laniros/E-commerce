@@ -18,12 +18,12 @@ const Signup = () => {
         setValues({ ...values, error: false, [name]: event.target.value });
     };
 
-    const clickSubmit = event => {
+    const clickSubmit =  event => {
         event.preventDefault();
-        setValues({ ...values, error: false });
-        signup({ name, email, password }).then(data => {
+        setValues({...values, error: false});
+        signup({name, email, password}).then(data => {
             if (data.error) {
-                setValues({ ...values, error: data.error, success: false });
+                setValues({...values, error: data.error, success: false});
             } else {
                 setValues({
                     ...values,
