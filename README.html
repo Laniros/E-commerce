@@ -1,0 +1,83 @@
+<p>Or Lanir<br/>
+    Store name &ndash; O &amp; R Store<br/>
+    What are you selling? - console games online ( ps4, xbox...)<br/>
+    What additional page(s) did you add? How to operate them<br/>
+    - #products additional pages &ndash; for each product if you press the view product button at the shop page you
+    enter a specific product game which describe the game, the console , the price and if out of stock.<br/>
+    - Best seller category &ndash; in the shop page we present a list of games according to the games that were sold the
+    most.<br/>
+    - In the admin dashboard we added that we can create/delete/update products and categories.<br/>
+    - Filter &ndash; in the shop page we can filter the search and we can present according to the filter information
+    .<br/>
+    What was hard to do?<br/>
+    For me the designing was a little bit challenging because the whole project &ldquo;depends&rdquo; on it, later It
+    was really hard to understand the react (using all the components of react &ndash; therefore I let my partaner take
+    more work on this section )</p>
+
+<p>Who is your partner? name and id. What did you do? What did your partner do?</p>
+
+<p>My partner is Roy Einhorn, 310056932, the project was built together on overall but each one I think pushed more on the
+    staff he is stronger so I built mostly the backend and the structure and Or built the front interface using the back
+    that we have built together.</p>
+
+<p>Specify all the different route your app supports</p><br/>
+    authRoutes<br/>
+    post - http://localhost:5000/api/signup - a request to sign a new user to the store users DB<br/>
+    post - http://localhost:5000/api/signin - a request to sign In a user already signup to the store<br/>
+    get - http://localhost:5000/api/signout - signing out of the store &ndash; just temporary exit</p>
+
+<p>braintreeRoutes</p>
+    get - http://localhost:5000/api/braintree/getToken/:userId &ndash; a request to get a token from Braintree sandbox
+    API in order to later present the features given by BRAINTREE. <br/>
+    post - http://localhost:5000/api/braintree/payment/:userId &ndash; sent a payment to the Braintree sandbox.</p>
+
+<p>
+    userRoutes<br/>
+    get - http://localhost:5000/api/secret/:userId &ndash; get the user profile ( this for getting the token later
+    on)<br/>
+    get - http://localhost:5000/api/user/:userId &ndash; get the user information<br/>
+    get - http://localhost:5000/api/orders/by/user/:userId &ndash; get user purchase history.<br/>
+    put - http://localhost:5000/api/user/:userId - update the user information ( usually password)</p>
+
+<p>categoryRoutes<br/>
+    get - http://localhost:5000/api/category/:categoryId &ndash; get one category information<br/>
+    post - http://localhost:5000/api/category/create/:userId - create one category make sure that the user is admin.
+    <br/>
+    put - http://localhost:5000/api/category/:categoryId/:userId&quot; - update one category makes sure that the user is
+    admin. <br/>
+    delete - http://localhost:5000/api/category/:categoryId/:userId &ndash; delete one category make sure that the user
+    is admin. <br/>
+    get - http://localhost:5000/api/categories - get all categories</p>
+
+<p>productRoutes<br/>
+get - http://localhost:5000/api/products - get all products<br/>
+get - http://localhost:5000/api/products/search &ndash; get the searched products<br/>
+get - http://localhost:5000/api/products/related/:productId &ndash; get all the products related to this game.<br/>
+get - http://localhost:5000/api/products/categories &ndash; get the products according to the filtered
+    categories. <br/>
+get - http://localhost:5000/api/products/by/search &ndash; get the products according to the filtered price
+    range. <br/>
+post - http://localhost:5000/api/product/photo/:productId &ndash; get the product photo<br/>
+
+<p>orderRoutes<br/>
+post - http://localhost:5000/api/order/create/:userId &ndash; a request when a user makes a payment and creates
+    order.<br/>
+get - http://localhost:5000/api/order/list/:userId &ndash; get the list of all orders that the user have <br/>
+get - http://localhost:5000/api/order/status-values/:userId &ndash; get the status value of an order ( shipping,
+    process and ex&#8230;)<br/>
+put - http://localhost:5000/api/order/:orderId/status/:userId - update the status value of an order ( shipping,
+    process and ex&#8230;)<br/>
+
+<p>How did you make your store secured?</p>
+
+<p>1. Each user can do his operations on his user only &ndash; required signUp and signIn for each user</p>
+
+<p>2. The passwords is encrypted and not presented or saved anywhere- just the encrypted- no way do get it from the DB
+    or the request.</p>
+
+<p>3. We used express-rate-limit on order to prevent DDOS attacks.</p>
+
+<p>
+    Did you implement the store using react.js?<br/>
+    Yes<br/>
+</p>

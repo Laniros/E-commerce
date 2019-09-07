@@ -12,7 +12,9 @@ const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 const braintreeRoutes = require('./routes/braintree');
 const orderRoutes = require('./routes/order');
+
 const rateLimit = require("express-rate-limit");
+
 
 require('dotenv').config();
 
