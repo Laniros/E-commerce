@@ -18,6 +18,7 @@ import ManageProducts from "./admin/ManageProducts";
 import UpdateProduct from "./admin/UpdateProduct";
 import ManageCategories from "./admin/ManageCategories";
 
+
 const Routes = () => {
     return (
         <BrowserRouter>

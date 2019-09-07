@@ -4,8 +4,6 @@ const router = express.Router();
 const {  requireSignin, isAuth, isAdmin } = require("../controllers/auth");
 
 const {
-    listBySearch,
-    list,
     userById,
     read,
     update,
@@ -20,8 +18,6 @@ router.get("/secret/:userId", requireSignin, isAuth, isAdmin, (req, res) => {
 
 router.get("/user/:userId", requireSignin, isAuth, read);
 router.put("/user/:userId", requireSignin, isAuth, update);
-// router.get("/users", requireSignin , isAuth, list);
-// router.post("/users/by/search", listBySearch);
 router.get("/orders/by/user/:userId", requireSignin, isAuth, purchaseHistory);
 
 router.param("userId", userById);

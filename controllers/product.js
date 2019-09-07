@@ -209,8 +209,6 @@ exports.listBySearch = (req, res) => {
     for (let key in req.body.filters) {
         if (req.body.filters[key].length > 0) {
             if (key === "price") {
-                // gte -  greater than price [0-10]
-                // lte - less than
                 findArgs[key] = {
                     $gte: req.body.filters[key][0],
                     $lte: req.body.filters[key][1]
@@ -249,12 +247,9 @@ exports.photo = (req, res, next) => {
 };
 
 exports.listSearch = (req, res) => {
-    // create query object to hold search value and category value
     const query = {};
-    // assign search value to query.name
     if (req.query.search) {
         query.name = { $regex: req.query.search, $options: "i" };
-        // assign category value to query.category
         if (req.query.category && req.query.category !== "All") {
             query.category = req.query.category;
         }

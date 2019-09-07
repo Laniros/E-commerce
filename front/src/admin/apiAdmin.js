@@ -165,32 +165,16 @@ export const deleteCategory = (categoryId, userId, token) => {
         .catch(err => console.log(err));
 };
 
-
-
-// export const getUsers = (token) => {
-//     return fetch(`${API}/users`, {
-//         method: "GET",
-//         headers: {
-//             Accept: "application/json",
-//             Authorization: `Bearer ${token}`,
-//         },
-//     })
-//         .then(response => {
-//             return response.json();
-//         })
-//         .catch(err => console.log(err));
-// };
-
-// export const list = params => {
-//     const query = queryString.stringify(params);
-//     console.log("query", query);
-//     return fetch(`${API}/users/search?${query}`, {
-//         method: "GET"
-//     })
-//         .then(response => {
-//             return response.json();
-//         })
-//         .catch(err => console.log(err));
-// };
+export const listUsers = params => {
+    const query = queryString.stringify(params);
+    console.log("query", query);
+    return fetch(`${API}/users/by/search?${query}`, {
+        method: "GET"
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
 
 

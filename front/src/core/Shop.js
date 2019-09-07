@@ -28,7 +28,6 @@ const Shop = () => {
     };
 
     const loadFilteredResults = newFilters => {
-        // console.log(newFilters);
         getFilteredProducts(skip, limit, newFilters).then(data => {
             if (data.error) {
                 setError(data.error);
@@ -42,7 +41,6 @@ const Shop = () => {
 
     const loadMore = () => {
         let toSkip = skip + limit;
-        // console.log(newFilters);
         getFilteredProducts(toSkip, limit, myFilters.filters).then(data => {
             if (data.error) {
                 setError(data.error);
@@ -71,13 +69,11 @@ const Shop = () => {
     }, []);
 
     const handleFilters = (filters, filterBy) => {
-        // console.log("SHOP", filters, filterBy);
         const newFilters = { ...myFilters };
         newFilters.filters[filterBy] = filters;
 
         if (filterBy === "price") {
-            let priceValues = handlePrice(filters);
-            newFilters.filters[filterBy] = priceValues;
+            newFilters.filters[filterBy] = handlePrice(filters);
         }
         loadFilteredResults(myFilters.filters);
         setMyFilters(newFilters);

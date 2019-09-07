@@ -12,8 +12,15 @@ const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 const braintreeRoutes = require('./routes/braintree');
 const orderRoutes = require('./routes/order');
+const rateLimit = require("express-rate-limit");
 
 require('dotenv').config();
+
+//protection from DOS
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100
+});
 
 // app
 const app = express();
@@ -26,6 +33,7 @@ mongoose.connect(process.env.DATABASE, {
 }).then(() => console.log('DB connected'));
 
 //middleware
+app.use(limiter);
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -38,6 +46,7 @@ app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
 app.use("/api", braintreeRoutes);
 app.use("/api", orderRoutes);
+
 
 const port = process.env.PORT || 5000;
 

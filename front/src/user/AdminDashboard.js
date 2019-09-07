@@ -2,7 +2,6 @@ import React from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
-// import SearchByUser from "../core/SearchByUser"
 
 const AdminDashboard = () => {
     const {
@@ -65,7 +64,6 @@ const AdminDashboard = () => {
             description={`Hello ${name}!`}
             className="container-fluid"
         >
-            {/*<SearchByUser/>*/}
             <div className="row">
                 <div className="col-3">{adminLinks()}</div>
                 <div className="col-9">{adminInfo()}</div>

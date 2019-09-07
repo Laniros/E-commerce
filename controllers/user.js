@@ -1,6 +1,6 @@
 const User = require("../models/user");
-const { Order } = require("../models/order");
-const { errorHandler } = require("../helpers/dbErrorHandler");
+const {Order} = require("../models/order");
+const {errorHandler} = require("../helpers/dbErrorHandler");
 
 exports.userById = (req, res, next, id) => {
     User.findById(id).exec((err, user) => {
@@ -22,9 +22,9 @@ exports.read = (req, res) => {
 
 exports.update = (req, res) => {
     User.findOneAndUpdate(
-        { _id: req.profile._id },
-        { $set: req.body },
-        { new: true },
+        {_id: req.profile._id},
+        {$set: req.body},
+        {new: true},
         (err, user) => {
             if (err) {
                 return res.status(400).json({
@@ -54,9 +54,9 @@ exports.addOrderToUserHistory = (req, res, next) => {
     });
 
     User.findOneAndUpdate(
-        { _id: req.profile._id },
-        { $push: { history: history } },
-        { new: true },
+        {_id: req.profile._id},
+        {$push: {history: history}},
+        {new: true},
         (error, data) => {
             if (error) {
                 return res.status(400).json({
@@ -69,7 +69,7 @@ exports.addOrderToUserHistory = (req, res, next) => {
 };
 
 exports.purchaseHistory = (req, res) => {
-    Order.find({ user: req.profile._id })
+    Order.find({user: req.profile._id})
         .populate("user", "_id name")
         .sort("-created")
         .exec((err, orders) => {
@@ -82,53 +82,4 @@ exports.purchaseHistory = (req, res) => {
         });
 };
 
-//list all users for search
 
-// exports.list = (req, res) => {
-//     User.find().exec((err, data) => {
-//         if (err) {
-//             return res.status(400).json({
-//                 error: errorHandler(err)
-//             });
-//         }
-//         res.json(data);
-//     });
-// };
-//
-// exports.listBySearch = (req, res) => {
-//     let user = req.profile._id ? req.profile._id : "desc";
-//     let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
-//     let skip = parseInt(req.body.skip);
-//     let findArgs = {};
-//
-//     for (let key in req.body.filters) {
-//         if (req.body.filters[key].length > 0) {
-//             if (key === "price") {
-//                 // gte -  greater than price [0-10]
-//                 // lte - less than
-//                 findArgs[key] = {
-//                     $gte: req.body.filters[key][0],
-//                     $lte: req.body.filters[key][1]
-//                 };
-//             } else {
-//                 findArgs[key] = req.body.filters[key];
-//             }
-//         }
-//     }
-//
-//     User.find(findArgs)
-//         .populate()
-//         .sort([[sortBy, user]])
-//         .skip(skip)
-//         .exec((err, data) => {
-//             if (err) {
-//                 return res.status(400).json({
-//                     error: "Users not found"
-//                 });
-//             }
-//             res.json({
-//                 size: data.length,
-//                 data
-//             });
-//         });
-// };
