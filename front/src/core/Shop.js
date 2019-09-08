@@ -6,6 +6,7 @@ import Checkbox from "./Checkbox";
 import RadioBox from "./RadioBox";
 import { prices } from "./fixedPrices";
 
+
 const Shop = () => {
     const [myFilters, setMyFilters] = useState({
         filters: { category: [], price: [] }
@@ -98,7 +99,7 @@ const Shop = () => {
             className="container-fluid"
         >
             <div className="row">
-                <div className="col-4">
+                <div className="col-3">
                     <h4>Filter by categories</h4>
                     <ul>
                         <Checkbox
@@ -120,12 +121,12 @@ const Shop = () => {
                     </div>
                 </div>
 
-                <div className="col-8">
+                <div className="col-9">
                     <h2 className="mb-4">Products</h2>
                     <div className="row">
                         {filteredResults.map((product, i) => (
-                            <div key={i} className="col-4 mb-3">
-                                <Card product={product} />
+                            <div key={i} className="card-shop">
+                                <Card class="card-shop" product={product} />
                             </div>
                         ))}
                     </div>

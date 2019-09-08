@@ -3,6 +3,7 @@ import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link, Redirect } from "react-router-dom";
 import { read, update, updateUser } from "./apiUser";
+import '../styles.css'
 
 const Profile = ({ match }) => {
     const [values, setValues] = useState({

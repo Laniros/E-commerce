@@ -67,7 +67,7 @@ const Card = ({
         return quantity > 0 ? (
             <span className="badge badge-primary badge-pill">In Stock</span>
         ) : (
-            <span className="badge badge-primary badge-pill">Out of Stock</span>
+            <span className="badge badge-danger badge-pill">Out of Stock</span>
         );
     };
 
@@ -77,6 +77,18 @@ const Card = ({
             updateItem(productId, event.target.value);
         }
     };
+
+    const showDescShorter = desc => {
+        if (desc.length > 90){
+           desc = desc.substr(0,88) + " ..."
+
+            }
+        return(
+            <p>{desc}</p>
+
+        )
+        };
+
 
     const showCartUpdateOptions = cartUpdate => {
         return (
@@ -101,14 +113,15 @@ const Card = ({
     };
 
     return (
-        <div className="card w-60">
+        <div className="card">
             <div className="card-header name">{product.name}</div>
-            <div className="card-body">
+            <div className="card-body ">
                 {shouldRedirect(redirect)}
                 <ShowImage item={product} url="product" />
-                <p className="lead mt-2">
-                    {product.description.substring(0, 103)}
+                <p className="lead mt-2 font-size-2">
+                    {showDescShorter(product.description)}
                 </p>
+                <div className="metadata">
                 <p className="black-10">${product.price}</p>
                 <p className="black-9">
                     Category: {product.category && product.category.name}
@@ -124,6 +137,7 @@ const Card = ({
                 {showRemoveButton(showRemoveProductButton)}
 
                 {showCartUpdateOptions(cartUpdate)}
+            </div>
             </div>
         </div>
     );
