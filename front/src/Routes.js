@@ -17,6 +17,7 @@ import Profile from "./user/Profile";
 import ManageProducts from "./admin/ManageProducts";
 import UpdateProduct from "./admin/UpdateProduct";
 import ManageCategories from "./admin/ManageCategories";
+import BestSellers from "./core/BestSellers"
 
 
 const Routes = () => {
@@ -24,6 +25,7 @@ const Routes = () => {
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Home} />
+                <Route path="/bestsellers" exact component={BestSellers} />
                 <Route path="/shop" exact component={Shop} />
                 <Route path="/signin" exact component={Signin} />
                 <Route path="/signup" exact component={Signup} />

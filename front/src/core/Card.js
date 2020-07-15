@@ -118,9 +118,9 @@ const Card = ({
             <div className="card-body ">
                 {shouldRedirect(redirect)}
                 <ShowImage item={product} url="product" />
-                <p className="lead mt-2 font-size-2">
+                <span className="lead mt-2 font-size-2">
                     {showDescShorter(product.description)}
-                </p>
+                </span>
                 <div className="metadata">
                 <p className="black-10">${product.price}</p>
                 <p className="black-9">

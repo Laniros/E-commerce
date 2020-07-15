@@ -3,6 +3,7 @@ import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import { getProducts, deleteProduct } from "./apiAdmin";
+import "../styles.css"
 
 const ManageProducts = () => {
     const [products, setProducts] = useState([]);
@@ -53,7 +54,7 @@ const ManageProducts = () => {
                             >
                                 <strong>{p.name}</strong>
                                 <Link to={`/admin/product/update/${p._id}`}>
-                                    <span className="badge badge-warning badge-pill">
+                                    <span className="updateButton">
                                         Update
                                     </span>
                                 </Link>

@@ -32,6 +32,11 @@ const userSchema = new mongoose.Schema(
         history: {
             type: Array,
             default: []
+        },
+        cart: {
+            type: Array,
+            default: []
+
         }
     },
     { timestamps: true }

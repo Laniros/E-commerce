@@ -4,9 +4,7 @@ const expressJwt = require('express-jwt');
 const {errorHandler} = require('../helpers/dbErrorHandler');
 const JWT_SECRET = 'V62JC935FUDELDNGTKJDFHSGKDJSADJSH8E';
 
-
 exports.signup = (req, res) => {
-    console.log(req.body);
     const user = new User(req.body);
     user.save((err, user) => {
         if (err) {
@@ -16,6 +14,7 @@ exports.signup = (req, res) => {
         }
         user.salt = undefined;
         user.hashed_password = undefined;
+        user.cart = [];
         res.json({
             user
         })
@@ -34,7 +33,7 @@ exports.signin = (req, res) => {
             return res.status(401).json({error: 'Email and password do not match'})
         }
         const token = jwt.sign({_id: user.id}, JWT_SECRET);
-        res.cookie('t', token, {expire: new Date() + 9999});
+        res.cookie('t', token, {expire: new Date() + 12096e5});
         const {_id, name, email, role} = user;
         return res.json({token, user: {_id, email, name, role}})
 
