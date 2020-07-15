@@ -11,7 +11,6 @@ async function BackTest() {
     checkIfValuesAreOk("Roy", ans1.user.name);
     checkIfValuesAreOk("roy.einhorn@gmail.com", ans1.user.email);
     //cant check token because changes
-
     //delete category
     const data = await signIn("laniros18692@gmail.com", "123123");
 
